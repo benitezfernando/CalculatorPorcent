@@ -9,9 +9,16 @@
 
   function parseNumeroLocal(str) {
     if (typeof str !== 'string') return NaN;
-    var normalizado = str.trim().replace(',', '.');
-    if (normalizado === '') return NaN;
-    return Number(normalizado);
+    var texto = str.trim();
+    if (texto === '') return NaN;
+    if (texto.indexOf(',') !== -1) {
+      // hay coma: cualquier punto previo es separador de miles
+      texto = texto.replace(/\./g, '').replace(',', '.');
+    } else if (/^-?\d{1,3}(\.\d{3})+$/.test(texto)) {
+      // solo puntos, agrupados de a 3 dígitos (ej "1.500", "1.234.567"): separador de miles
+      texto = texto.replace(/\./g, '');
+    }
+    return Number(texto);
   }
 
   function formatNumeroLocal(num) {

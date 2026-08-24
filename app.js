@@ -101,7 +101,9 @@
   function leerHistorial() {
     try {
       var raw = localStorage.getItem(HISTORY_KEY);
-      return raw ? JSON.parse(raw) : [];
+      if (!raw) return [];
+      var datos = JSON.parse(raw);
+      return Array.isArray(datos) ? datos : [];
     } catch (e) {
       return [];
     }
@@ -133,12 +135,12 @@
   function renderizarHistorial() {
     var historial = leerHistorial();
     historyList.innerHTML = '';
-    historial.forEach(function (entrada, indice) {
+    historial.forEach(function (entrada) {
       var li = document.createElement('li');
       var btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'history-item';
-      btn.dataset.historyIndex = String(indice);
+      btn.dataset.historyId = String(entrada.id);
       btn.textContent = etiquetasModo[entrada.modo] + ': ' + entrada.resumen;
       li.appendChild(btn);
       historyList.appendChild(li);
@@ -155,9 +157,14 @@
     });
   }
 
+  function generarIdHistorial() {
+    return Date.now() + '-' + Math.random().toString(36).slice(2);
+  }
+
   function agregarAlHistorial(entrada) {
     var historial = leerHistorial();
     if (entradasIguales(historial[0], entrada)) return;
+    entrada.id = generarIdHistorial();
     historial.unshift(entrada);
     if (historial.length > HISTORY_MAX) {
       historial = historial.slice(0, HISTORY_MAX);
@@ -204,10 +211,11 @@
   });
 
   historyList.addEventListener('click', function (evento) {
-    var btn = evento.target.closest('[data-history-index]');
+    var btn = evento.target.closest('[data-history-id]');
     if (!btn) return;
+    var idBuscado = btn.dataset.historyId;
     var historial = leerHistorial();
-    var entrada = historial[Number(btn.dataset.historyIndex)];
+    var entrada = historial.find(function (e) { return e.id === idBuscado; });
     if (!entrada) return;
     activarModo(entrada.modo);
     var panelDestino = document.querySelector('[data-mode-panel="' + entrada.modo + '"]');
@@ -216,6 +224,10 @@
       input.value = calc.formatNumeroLocal(entrada.valores[campo]);
     });
     actualizarResultado(panelDestino, entrada.modo);
+  });
+
+  paneles.forEach(function (panel) {
+    actualizarResultado(panel, panel.dataset.modePanel);
   });
 
   renderizarHistorial();

@@ -1,6 +1,9 @@
 'use strict';
 
-var CACHE_NAME = 'calc-v1';
+// IMPORTANTE: bumpear este valor (calc-vN) cada vez que cambie CUALQUIER archivo en
+// ARCHIVOS_CACHE — de lo contrario los usuarios quedan con la versión vieja cacheada
+// indefinidamente, sin mecanismo de recuperación.
+var CACHE_NAME = 'calc-v2';
 var ARCHIVOS_CACHE = [
   './',
   './index.html',
@@ -9,7 +12,9 @@ var ARCHIVOS_CACHE = [
   './app.js',
   './manifest.json',
   './icons/icon-192.svg',
-  './icons/icon-512.svg'
+  './icons/icon-512.svg',
+  './icons/icon-192.png',
+  './icons/icon-512.png'
 ];
 
 self.addEventListener('install', function (evento) {

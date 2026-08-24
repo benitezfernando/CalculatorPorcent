@@ -30,6 +30,18 @@ test('parseNumeroLocal - con espacios', () => {
   assert.equal(parseNumeroLocal('  7,5  '), 7.5);
 });
 
+test('parseNumeroLocal - punto como separador de miles', () => {
+  assert.equal(parseNumeroLocal('1.500'), 1500);
+});
+
+test('parseNumeroLocal - miles con coma decimal', () => {
+  assert.equal(parseNumeroLocal('1.234,56'), 1234.56);
+});
+
+test('parseNumeroLocal - punto decimal simple sigue funcionando', () => {
+  assert.equal(parseNumeroLocal('12.5'), 12.5);
+});
+
 test('formatNumeroLocal - entero sin decimales', () => {
   assert.equal(formatNumeroLocal(7), '7');
 });
