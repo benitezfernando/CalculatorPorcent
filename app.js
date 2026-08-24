@@ -145,8 +145,19 @@
     });
   }
 
+  function entradasIguales(a, b) {
+    if (!a || !b || a.modo !== b.modo) return false;
+    var camposA = Object.keys(a.valores);
+    var camposB = Object.keys(b.valores);
+    if (camposA.length !== camposB.length) return false;
+    return camposA.every(function (campo) {
+      return a.valores[campo] === b.valores[campo];
+    });
+  }
+
   function agregarAlHistorial(entrada) {
     var historial = leerHistorial();
+    if (entradasIguales(historial[0], entrada)) return;
     historial.unshift(entrada);
     if (historial.length > HISTORY_MAX) {
       historial = historial.slice(0, HISTORY_MAX);
