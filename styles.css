@@ -1,11 +1,11 @@
 :root {
-  --color-bg: #f4f6fb;
+  --color-bg: #faf9f5;
   --color-panel: #ffffff;
-  --color-border: #d8deea;
-  --color-primary: #2c3e6b;
-  --color-accent: #fff176;
-  --color-text: #1f2430;
-  --color-text-muted: #6b7280;
+  --color-border: #e8e6dc;
+  --color-primary: #d97757;
+  --color-accent: #f0eee6;
+  --color-text: #3d3929;
+  --color-text-muted: #83827d;
   --color-error: #b3261e;
   --radius: 10px;
 }
@@ -87,6 +87,7 @@ body {
   min-width: 3rem;
   padding: 0.3rem 0.5rem;
   background: var(--color-accent);
+  color: var(--color-primary);
   border-radius: 6px;
   font-weight: 700;
   text-align: center;
