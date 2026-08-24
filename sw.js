@@ -3,7 +3,7 @@
 // IMPORTANTE: bumpear este valor (calc-vN) cada vez que cambie CUALQUIER archivo en
 // ARCHIVOS_CACHE — de lo contrario los usuarios quedan con la versión vieja cacheada
 // indefinidamente, sin mecanismo de recuperación.
-var CACHE_NAME = 'calc-v4';
+var CACHE_NAME = 'calc-v5';
 var ARCHIVOS_CACHE = [
   './',
   './index.html',
