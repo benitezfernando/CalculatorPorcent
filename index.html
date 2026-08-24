@@ -12,42 +12,44 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="app-header">
-    <h1>% Calculadora</h1>
-  </header>
+  <div class="app">
+    <header class="app-header">
+      <h1>% Calculadora</h1>
+    </header>
 
-  <nav class="tabs" role="tablist" aria-label="Modo de cálculo">
-    <button class="tab active" data-mode="cantidad" role="tab" aria-selected="true">Cantidad</button>
-    <button class="tab" data-mode="total" role="tab" aria-selected="false">Total</button>
-    <button class="tab" data-mode="porcentaje" role="tab" aria-selected="false">Porcentaje</button>
-  </nav>
+    <nav class="tabs" role="tablist" aria-label="Modo de cálculo">
+      <button class="tab active" data-mode="cantidad" role="tab" aria-selected="true">Cantidad</button>
+      <button class="tab" data-mode="total" role="tab" aria-selected="false">Total</button>
+      <button class="tab" data-mode="porcentaje" role="tab" aria-selected="false">Porcentaje</button>
+    </nav>
 
-  <main class="panel">
-    <section class="mode-panel" data-mode-panel="cantidad">
-      <p class="prompt">El <input type="text" inputmode="decimal" class="input" data-field="porcentaje" placeholder="%">% de <input type="text" inputmode="decimal" class="input" data-field="total" placeholder="total"> es <span class="result" data-result>—</span>.</p>
-      <p class="example">Ejemplo: el 70% de 10 es 7.</p>
+    <main class="panel">
+      <section class="mode-panel" data-mode-panel="cantidad">
+        <p class="prompt">El <input type="text" inputmode="decimal" class="input" data-field="porcentaje" placeholder="%">% de <input type="text" inputmode="decimal" class="input" data-field="total" placeholder="total"> es <span class="result" data-result>—</span>.</p>
+        <p class="example">Ejemplo: el 70% de 10 es 7.</p>
+      </section>
+
+      <section class="mode-panel" data-mode-panel="total" hidden>
+        <p class="prompt">Si <input type="text" inputmode="decimal" class="input" data-field="cantidad" placeholder="cantidad"> es el <input type="text" inputmode="decimal" class="input" data-field="porcentaje" placeholder="%">% de una cantidad total, esa cantidad total es <span class="result" data-result>—</span>.</p>
+        <p class="example">Ejemplo: si 4 es el 40% de una cantidad total, esa cantidad total es 10.</p>
+      </section>
+
+      <section class="mode-panel" data-mode-panel="porcentaje" hidden>
+        <p class="prompt"><input type="text" inputmode="decimal" class="input" data-field="cantidad" placeholder="cantidad"> es el <span class="result" data-result>—</span>% de <input type="text" inputmode="decimal" class="input" data-field="total" placeholder="total">.</p>
+        <p class="example">Ejemplo: 3 es el 30% de 10.</p>
+      </section>
+    </main>
+
+    <section class="history">
+      <button class="history-toggle" type="button" data-history-toggle aria-expanded="false">Historial ▾</button>
+      <div class="history-body" data-history-body hidden>
+        <ul class="history-list" data-history-list></ul>
+        <button class="history-clear" type="button" data-history-clear>Limpiar historial</button>
+      </div>
     </section>
 
-    <section class="mode-panel" data-mode-panel="total" hidden>
-      <p class="prompt">Si <input type="text" inputmode="decimal" class="input" data-field="cantidad" placeholder="cantidad"> es el <input type="text" inputmode="decimal" class="input" data-field="porcentaje" placeholder="%">% de una cantidad total, esa cantidad total es <span class="result" data-result>—</span>.</p>
-      <p class="example">Ejemplo: si 4 es el 40% de una cantidad total, esa cantidad total es 10.</p>
-    </section>
-
-    <section class="mode-panel" data-mode-panel="porcentaje" hidden>
-      <p class="prompt"><input type="text" inputmode="decimal" class="input" data-field="cantidad" placeholder="cantidad"> es el <span class="result" data-result>—</span>% de <input type="text" inputmode="decimal" class="input" data-field="total" placeholder="total">.</p>
-      <p class="example">Ejemplo: 3 es el 30% de 10.</p>
-    </section>
-  </main>
-
-  <section class="history">
-    <button class="history-toggle" type="button" data-history-toggle aria-expanded="false">Historial ▾</button>
-    <div class="history-body" data-history-body hidden>
-      <ul class="history-list" data-history-list></ul>
-      <button class="history-clear" type="button" data-history-clear>Limpiar historial</button>
-    </div>
-  </section>
-
-  <footer class="app-footer">© 2026 Fernando Benítez</footer>
+    <footer class="app-footer">© 2026 Fernando Benítez</footer>
+  </div>
 
   <script src="calc.js"></script>
   <script src="app.js"></script>
