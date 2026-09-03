@@ -21,6 +21,12 @@
       calcular: function (valores) {
         return calc.calcularPorcentaje(valores.cantidad, valores.total);
       }
+    },
+    descuento: {
+      campos: ['porcentaje', 'tope'],
+      calcular: function (valores) {
+        return calc.calcularTotal(valores.tope, valores.porcentaje);
+      }
     }
   };
 
@@ -95,7 +101,8 @@
   var etiquetasModo = {
     cantidad: 'Cantidad',
     total: 'Total',
-    porcentaje: 'Porcentaje'
+    porcentaje: 'Porcentaje',
+    descuento: 'Aprovechar descuento'
   };
 
   function leerHistorial() {
@@ -124,7 +131,10 @@
     if (modo === 'total') {
       return calc.formatNumeroLocal(valores.cantidad) + ' es el ' + calc.formatNumeroLocal(valores.porcentaje) + '% de ' + textoResultado;
     }
-    return calc.formatNumeroLocal(valores.cantidad) + ' es el ' + textoResultado + '% de ' + calc.formatNumeroLocal(valores.total);
+    if (modo === 'porcentaje') {
+      return calc.formatNumeroLocal(valores.cantidad) + ' es el ' + textoResultado + '% de ' + calc.formatNumeroLocal(valores.total);
+    }
+    return 'Con ' + calc.formatNumeroLocal(valores.porcentaje) + '% y tope de $' + calc.formatNumeroLocal(valores.tope) + ', comprá $' + textoResultado + ' para aprovecharlo';
   }
 
   var historyList = document.querySelector('[data-history-list]');
