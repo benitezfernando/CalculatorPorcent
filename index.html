@@ -45,7 +45,11 @@
     </header>
 
     <nav class="tabs" role="tablist" aria-label="Modo de cálculo">
-      <button class="tab active" data-mode="cantidad" role="tab" aria-selected="true">
+      <button class="tab active" data-mode="descuento" role="tab" aria-selected="true">
+        <svg class="tab-icon" aria-hidden="true"><use href="#icon-tag"></use></svg>
+        <span>Aprovechar descuento</span>
+      </button>
+      <button class="tab" data-mode="cantidad" role="tab" aria-selected="false">
         <svg class="tab-icon" aria-hidden="true"><use href="#icon-percent"></use></svg>
         <span>Cantidad</span>
       </button>
@@ -57,14 +61,28 @@
         <svg class="tab-icon" aria-hidden="true"><use href="#icon-ratio"></use></svg>
         <span>Porcentaje</span>
       </button>
-      <button class="tab" data-mode="descuento" role="tab" aria-selected="false">
-        <svg class="tab-icon" aria-hidden="true"><use href="#icon-tag"></use></svg>
-        <span>Aprovechar descuento</span>
-      </button>
     </nav>
 
     <main class="panel">
-      <section class="mode-panel" data-mode-panel="cantidad">
+      <section class="mode-panel" data-mode-panel="descuento">
+        <label class="field-label" for="descuento-porcentaje">Porcentaje de descuento</label>
+        <input id="descuento-porcentaje" type="text" inputmode="decimal" class="input" data-field="porcentaje" placeholder="0">
+
+        <div class="field-divider" aria-hidden="true">
+          <svg class="divider-icon"><use href="#icon-tag"></use></svg>
+        </div>
+
+        <label class="field-label" for="descuento-tope">Tope de reintegro ($)</label>
+        <input id="descuento-tope" type="text" inputmode="decimal" class="input" data-field="tope" placeholder="0">
+
+        <div class="summary-card">
+          <div class="summary-label">Comprá al menos</div>
+          <div class="summary-value" data-result>—</div>
+          <p class="example">Con 25% de descuento y tope de $25, comprá $100 para aprovecharlo todo.</p>
+        </div>
+      </section>
+
+      <section class="mode-panel" data-mode-panel="cantidad" hidden>
         <label class="field-label" for="cantidad-porcentaje">Porcentaje</label>
         <input id="cantidad-porcentaje" type="text" inputmode="decimal" class="input" data-field="porcentaje" placeholder="0">
 
@@ -115,24 +133,6 @@
           <div class="summary-label">Resultado</div>
           <div class="summary-value" data-result>—</div>
           <p class="example">3 es el 30% de 10.</p>
-        </div>
-      </section>
-
-      <section class="mode-panel" data-mode-panel="descuento" hidden>
-        <label class="field-label" for="descuento-porcentaje">Porcentaje de descuento</label>
-        <input id="descuento-porcentaje" type="text" inputmode="decimal" class="input" data-field="porcentaje" placeholder="0">
-
-        <div class="field-divider" aria-hidden="true">
-          <svg class="divider-icon"><use href="#icon-tag"></use></svg>
-        </div>
-
-        <label class="field-label" for="descuento-tope">Tope de reintegro ($)</label>
-        <input id="descuento-tope" type="text" inputmode="decimal" class="input" data-field="tope" placeholder="0">
-
-        <div class="summary-card">
-          <div class="summary-label">Comprá al menos</div>
-          <div class="summary-value" data-result>—</div>
-          <p class="example">Con 25% de descuento y tope de $25, comprá $100 para aprovecharlo todo.</p>
         </div>
       </section>
     </main>
